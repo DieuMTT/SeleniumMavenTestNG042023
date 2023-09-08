@@ -11,8 +11,8 @@ import org.testng.asserts.SoftAssert;
 
 public class AddNewCustomer extends BaseTest {
 
-    String COMPANY_NAME = "Selenium Java 04/2023 18";
-    String EmailContact = "DieuMTT18@gmail.com";
+    String COMPANY_NAME = "Selenium Java 04/2023 19";
+    String EmailContact = "DieuMTT19@gmail.com";
 
     public void loginCRM() {
         driver.get("https://crm.anhtester.com/admin/authentication");
@@ -127,8 +127,6 @@ public class AddNewCustomer extends BaseTest {
         sleep(1);
         driver.findElement((By.xpath(LocatorCRM.buttonShowPassword))).click();
         sleep(1);
-
-        sleep(1);
         driver.findElement(By.xpath(LocatorCRM.checkboxDoNotSendEmail)).click();
         Assert.assertTrue(driver.findElement(By.xpath(LocatorCRM.checkboxDoNotSendEmail)).isSelected(),"checkboxDoNotSendEmail không check)");
         Assert.assertTrue(driver.findElement(By.xpath(LocatorCRM.buttonSaveContact)).isEnabled(),"buttonSaveContact is disabled");
@@ -138,14 +136,5 @@ public class AddNewCustomer extends BaseTest {
         driver.findElement(By.xpath(LocatorCRM.inputSearchContacts)).sendKeys("DieuMTT");
         sleep(2);
         Assert.assertTrue(driver.findElement(By.xpath(LocatorCRM.firstItemContactOnTable)).isDisplayed(), "Không tìm thấy Contact");
-
-
-
-
-
-
-
-
-
     }
 }
