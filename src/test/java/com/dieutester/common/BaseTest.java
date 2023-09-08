@@ -1,4 +1,4 @@
-package com.anhtester.common;
+package com.dieutester.common;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

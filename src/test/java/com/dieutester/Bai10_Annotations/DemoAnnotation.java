@@ -1,4 +1,4 @@
-package com.anhtester.Bai10_Annotations;
+package com.dieutester.Bai10_Annotations;
 
 import org.testng.annotations.*;
 

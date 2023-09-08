@@ -1,4 +1,4 @@
-package com.anhtester.locators;
+package com.dieutester.locators;
 
 public class LocatorCRM {
     //Login CRM
@@ -59,6 +59,8 @@ public class LocatorCRM {
     public static String inputPasswordContact = "//input[@name='password']";
     public static String checkboxDoNotSendEmail = "//input[@id='donotsendwelcomeemail']";
     public static String buttonSaveContact = "//form[@id='contact-form']//button[normalize-space()='Save']";
+    public static String inputSearchContact = "//div[@id='DataTables_Table_0_filter']//input[@type='search']";
+    public static String firstItemContactOnTable = "//td[@class='sorting_1']/a";
 
     //Project List
     public static String buttonAddNewProject = "//a[normalize-space()='New Project']";
@@ -84,7 +86,8 @@ public class LocatorCRM {
     public static String inputTags = "//label[normalize-space()='Tags']/following-sibling::input";
     public static String inputDescription = "//body[@data-id='description']";
     public static String labelSendProject = "//label[normalize-space()='Send project created email']";
-    public static String checkboxSendProject = "//label[normalize-space()='Send project created email']/preceding-sibling::input";
+    //public static String checkboxSendProject = "//label[normalize-space()='Send project created email']/preceding-sibling::input";
+    public static String checkboxSendProject = "//input[@id='donotsendwelcomeemail']";
     public static String buttonSaveProject = "//div[@class='panel-footer text-right']/child::button";
 
 }

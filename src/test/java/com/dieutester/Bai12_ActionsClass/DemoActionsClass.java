@@ -1,6 +1,6 @@
-package com.anhtester.Bai12_ActionsClass;
+package com.dieutester.Bai12_ActionsClass;
 
-import com.anhtester.common.BaseTest;
+import com.dieutester.common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

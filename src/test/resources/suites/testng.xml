@@ -9,7 +9,7 @@
     </groups>
     <test name="Test">
         <classes>
-            <class name="com.anhtester.Bai10_Annotations.DemoAnnotation"></class>
+            <class name="com.dieutester.Bai10_Annotations.DemoAnnotation"></class>
         </classes>
     </test>
 </suite>

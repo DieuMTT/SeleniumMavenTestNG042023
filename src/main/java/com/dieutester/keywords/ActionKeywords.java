@@ -1,4 +1,4 @@
-package com.anhtester.keywords;
+package com.dieutester.keywords;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

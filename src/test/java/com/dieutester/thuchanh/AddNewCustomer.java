@@ -1,18 +1,18 @@
-package com.anhtester.thuchanh;
+package com.dieutester.thuchanh;
 
-import com.anhtester.common.BaseTest;
-import com.anhtester.keywords.ActionKeywords;
-import com.anhtester.locators.LocatorCRM;
+import com.dieutester.common.BaseTest;
+import com.dieutester.keywords.ActionKeywords;
+import com.dieutester.locators.LocatorCRM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class AddNewCustomer extends BaseTest {
 
-    String COMPANY_NAME = "Selenium Java 04/2023 A5";
+    String COMPANY_NAME = "Selenium Java 04/2023 18";
+    String EmailContact = "DieuMTT18@gmail.com";
 
     public void loginCRM() {
         driver.get("https://crm.anhtester.com/admin/authentication");
@@ -104,19 +104,48 @@ public class AddNewCustomer extends BaseTest {
         //Upload file for Profile image
         driver.findElement(By.xpath(LocatorCRM.inputProfileImage)).sendKeys(System.getProperty("user.dir") + "\\src\\test\\resources\\datatest\\profile_contact.png");
         sleep(2);
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputFirstName)).getText(),"Dieu","First Name không đúng.");
+        driver.findElement(By.xpath(LocatorCRM.inputFirstName)).sendKeys("Dieu");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputFirstName)).getAttribute("value"), "Dieu", "FirstName không đúng.");
         sleep(1);
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputLastName)).getText(),"MTT","  Last Name không đúng.");
+        driver.findElement(By.xpath(LocatorCRM.inputLastName)).sendKeys("MTT");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputLastName)).getAttribute("value"),"MTT","  Last Name không đúng.");
         sleep(1);
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputPosition)).getText(),"ABC Company","  Position không đúng.");
+        driver.findElement(By.xpath(LocatorCRM.inputPosition)).sendKeys("ABC Company");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputPosition)).getAttribute("value"),"ABC Company","  Position không đúng.");
         sleep(1);
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputEmailContact)).getText(),"ABC Company","  Email không đúng.");
+        driver.findElement(By.xpath(LocatorCRM.inputEmailContact)).sendKeys(EmailContact);
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputEmailContact)).getAttribute("value"),EmailContact,"  Email không đúng.");
         sleep(1);
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputPhoneContact)).getText(),"036528771","  Phone không đúng.");
+        driver.findElement(By.xpath(LocatorCRM.inputPhoneContact)).sendKeys("036528771");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputPhoneContact)).getAttribute("value"),"+84036528771","  Phone không đúng.");
         sleep(1);
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputPasswordContact)).getText(),"08092023","  Password không đúng.");
+        driver.findElement(By.xpath(LocatorCRM.inputPasswordContact)).sendKeys("08092023");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCRM.inputPasswordContact)).getAttribute("value"),"08092023","  Password không đúng.");
+        driver.findElement(By.xpath(LocatorCRM.inputPasswordContact)).clear();
         sleep(1);
-        Assert.assertTrue(driver.findElement(By.xpath(LocatorCRM.checkboxDoNotSendEmail)).isDisplayed(),"Không tìm thấy label của checkboxDoNotSendEmail.");
+        driver.findElement((By.xpath(LocatorCRM.buttonGeneratePassword))).click();
         sleep(1);
+        driver.findElement((By.xpath(LocatorCRM.buttonShowPassword))).click();
+        sleep(1);
+
+        sleep(1);
+        driver.findElement(By.xpath(LocatorCRM.checkboxDoNotSendEmail)).click();
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCRM.checkboxDoNotSendEmail)).isSelected(),"checkboxDoNotSendEmail không check)");
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCRM.buttonSaveContact)).isEnabled(),"buttonSaveContact is disabled");
+        driver.findElement(By.xpath(LocatorCRM.buttonSaveContact)).click();
+        sleep(2);
+        //Search lại Contact vừa Add New
+        driver.findElement(By.xpath(LocatorCRM.inputSearchContacts)).sendKeys("DieuMTT");
+        sleep(2);
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCRM.firstItemContactOnTable)).isDisplayed(), "Không tìm thấy Contact");
+
+
+
+
+
+
+
+
+
     }
 }

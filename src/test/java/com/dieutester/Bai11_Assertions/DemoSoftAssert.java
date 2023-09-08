@@ -1,10 +1,7 @@
-package com.anhtester.Bai11_Assertions;
+package com.dieutester.Bai11_Assertions;
 
-import com.anhtester.common.BaseTest;
+import com.dieutester.common.BaseTest;
 import org.openqa.selenium.By;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 

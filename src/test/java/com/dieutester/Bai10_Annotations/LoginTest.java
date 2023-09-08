@@ -1,6 +1,6 @@
-package com.anhtester.Bai10_Annotations;
+package com.dieutester.Bai10_Annotations;
 
-import com.anhtester.common.BaseTest;
+import com.dieutester.common.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
