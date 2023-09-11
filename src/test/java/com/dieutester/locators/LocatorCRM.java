@@ -62,6 +62,7 @@ public class LocatorCRM {
     public static String inputSearchContact = "//div[@id='DataTables_Table_0_filter']//input[@type='search']";
     public static String firstItemContactOnTable = "//td[@class='sorting_1']/a";
 
+
     //Project List
     public static String buttonAddNewProject = "//a[normalize-space()='New Project']";
     public static String inputSearchProjects = "//div[@id='DataTables_Table_0_filter']//input[@type='search']";
