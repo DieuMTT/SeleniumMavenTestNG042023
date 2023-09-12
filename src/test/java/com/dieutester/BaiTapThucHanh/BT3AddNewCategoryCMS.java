@@ -1,14 +1,12 @@
 package com.dieutester.BaiTapThucHanh;
 import com.dieutester.common.BaseTest;
 import com.dieutester.locators.LocatorCMS;
-import com.dieutester.locators.LocatorCRM;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-public class AddNewCategoryCMS extends BaseTest{
+public class BT3AddNewCategoryCMS extends BaseTest{
     public void loginCMS() {
         driver.get("https://cms.anhtester.com/login");
         Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerLoginPage)).isDisplayed(), "Header không tồn tại, không phải trang Login");
@@ -21,32 +19,33 @@ public class AddNewCategoryCMS extends BaseTest{
     @Test(priority = 1)
     public void testAddNewCategory(){
         loginCMS();
-
         driver.findElement(By.xpath(LocatorCMS.menuProducts)).click();
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.menuCategory)).click();
         sleep(1);
-        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerCategoriesPage)).isDisplayed(), "Không đến được trang All Categories.");
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.headerAllCategoriesPage)).getText(), "All categories", "Tên header All Categories page không đúng.");
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerCategoriesPage)).isDisplayed(),
+                "Không đến được trang All Categories.");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.headerAllCategoriesPage)).getText(),
+                "All categories",
+                "Tên header All Categories page không đúng.");
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.buttonAddNewCategory)).click();
-
-
-        //TC Add New Category
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerAddNewCategory)).isDisplayed(),
+                "Không đến được trang  Add New Category\"");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.headerAddNewCategory)).getText(),
+                "Category Information",
+                "Header không tồn tại, không phải trang Add New Category");
         // Input Name
-        String Name = "DMTT1";
+        String Name = "DMTT11";
         driver.findElement((By.xpath(LocatorCMS.inputName))).sendKeys(Name);
-
        // Input Search Parent Category
         driver.findElement(By.xpath(LocatorCMS.dropdownParentCategory)).click();
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.inputSearchParentCategory)).sendKeys("Demo category 1");
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.inputSearchParentCategory)).sendKeys(Keys.ENTER);
-
        //InputOrderingNumber
         driver.findElement((By.xpath(LocatorCMS.inputOrderingNumber))).sendKeys("1");
-
         //Input Type
         Select select = new Select(driver.findElement(By.xpath(LocatorCMS.listOptionType)));
         select.selectByVisibleText("Digital");
@@ -56,7 +55,6 @@ public class AddNewCategoryCMS extends BaseTest{
         Assert.assertEquals(select.getOptions().size(),2);
         //Kiểm tra giá trị trong dropdown đúng sau khi đã chọn thành công
         Assert.assertEquals(select.getFirstSelectedOption().getText(),"Digital");
-
         //Input Banner
         driver.findElement(By.xpath(LocatorCMS.buttonBrowserBanner)).click();
         sleep(1);
@@ -66,7 +64,6 @@ public class AddNewCategoryCMS extends BaseTest{
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.buttonAddFilesBanner)).click();
         sleep(1);
-
         //Input Icon
         driver.findElement(By.xpath(LocatorCMS.buttonBrowserIcon)).click();
         sleep(1);
@@ -76,30 +73,35 @@ public class AddNewCategoryCMS extends BaseTest{
         sleep(2);
         driver.findElement(By.xpath(LocatorCMS.buttonAddFilesBanner)).click();
         sleep(1);
-
-
         //Input MetaDescription
         driver.findElement(By.xpath(LocatorCMS.inputMetaDescription)).sendKeys("abc");
         sleep(1);
-
        //Input FilteringAttributes
         driver.findElement(By.xpath(LocatorCMS.dropdownFilteringAttributes)).click();
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.inputSearchFilteringAttributes)).sendKeys("Fabric");
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.inputSearchFilteringAttributes)).sendKeys(Keys.ENTER);
-        sleep(8);
-
+        sleep(2);
         //Click on Save button
         driver.findElement(By.xpath(LocatorCMS.buttonSave)).click();
-
         //Search lại Category vừa Add New
         sleep(2);
         driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys(Name);
         driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys(Keys.ENTER);
         sleep(2);
-        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).isDisplayed(), "Không tìm thấy Category");
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).getText(),Name,"Không tìm thấy Category");
+        //BT1
+        String itemName = driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).getText();
+        if(itemName==Name){
+            System.out.println("Add Category  successfully");
+        }else {
+            System.out.println(("Add Category  unsuccessfully"));
+        }
+       //BT3
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).isDisplayed(),
+                "Không tìm thấy Category");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).getText(),Name,
+                "Không tìm thấy Category");
     }
     @Test(priority = 2)
     public void testEditCategory(){
@@ -108,21 +110,27 @@ public class AddNewCategoryCMS extends BaseTest{
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.inputName)).clear();
         sleep(1);
-        driver.findElement(By.xpath(LocatorCMS.inputName)).sendKeys("EditName");
+        driver.findElement(By.xpath(LocatorCMS.inputName)).sendKeys("EditName1111");
         sleep(2);
         driver.findElement(By.xpath(LocatorCMS.buttonSave)).click();
-
+        sleep(10);
 
         //Search lại Category vừa Edit
-        driver.findElement(By.xpath(LocatorCMS.menuProducts)).click();
-        sleep(1);
         driver.findElement(By.xpath(LocatorCMS.menuCategory)).click();
-        sleep(1);
-        driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys("EditName");
+        sleep(4);
+        driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys("EditName1111");
         driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys(Keys.ENTER);
-        sleep(2);
-        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).isDisplayed(), "Không tìm thấy Category");
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).getText(),"EditName","Không tìm thấy Category");
+        sleep(5);
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).isDisplayed(),
+                "Không tìm thấy Category");
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).getText(),
+                "EditName1111",
+                "Không tìm thấy Category");
+
+        //Kiểm tra giá trị sau khi Edit
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.inputName)).getAttribute("value"),
+                "EditName1111 ",
+                "Name đã update không đúng.");
 }
     @Test(priority = 3)
     public void testDeleteCategory(){
@@ -131,7 +139,7 @@ public class AddNewCategoryCMS extends BaseTest{
         sleep(1);
         driver.findElement(By.xpath(LocatorCMS.menuCategory)).click();
         sleep(1);
-        driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys("Dieu");
+        driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys("EditName1111");
         driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys(Keys.ENTER);
         sleep(2);
         driver.findElement(By.xpath(LocatorCMS.buttonDeleteCategory)).click();
@@ -139,9 +147,13 @@ public class AddNewCategoryCMS extends BaseTest{
         driver.findElement(By.xpath("//a[contains(@class,'btn btn-primary mt-2')]")).click();
 
         //Search lại Category vừa Delete
-        driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys("Dieu");
+        driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys("EditName1111");
         driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys(Keys.ENTER);
         sleep(2);
+       String messageSearchNotFoundCategory = driver.findElement(By.xpath(LocatorCMS.messageNothingFound)).getText();
+       Assert.assertEquals(messageSearchNotFoundCategory,
+               "Nothing found",
+               "Message Search Not Found Category  không tồn tại");
     }
 }
 

@@ -3,7 +3,7 @@
 <suite name="Suite" >
     <test name="Test">
         <classes>
-            <class name="com.dieutester.BaiTapThucHanh.AddNewCategoryCMS"></class>
+            <class name="com.dieutester.BaiTapThucHanh.BT3AddNewCategoryCMS"></class>
         </classes>
     </test>
 </suite>
