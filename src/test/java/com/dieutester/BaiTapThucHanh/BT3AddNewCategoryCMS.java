@@ -3,10 +3,16 @@ import com.dieutester.common.BaseTest;
 import com.dieutester.locators.LocatorCMS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 public class BT3AddNewCategoryCMS extends BaseTest{
+    public String NameCategory = "DMTT11";
+    public BT3AddNewCategoryCMS(WebDriver _driver) {
+        driver = _driver;
+    }
+
     public void loginCMS() {
         driver.get("https://cms.anhtester.com/login");
         Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerLoginPage)).isDisplayed(), "Header không tồn tại, không phải trang Login");
@@ -36,8 +42,7 @@ public class BT3AddNewCategoryCMS extends BaseTest{
                 "Category Information",
                 "Header không tồn tại, không phải trang Add New Category");
         // Input Name
-        String Name = "DMTT11";
-        driver.findElement((By.xpath(LocatorCMS.inputName))).sendKeys(Name);
+        driver.findElement((By.xpath(LocatorCMS.inputName))).sendKeys(NameCategory);
        // Input Search Parent Category
         driver.findElement(By.xpath(LocatorCMS.dropdownParentCategory)).click();
         sleep(1);
@@ -87,12 +92,12 @@ public class BT3AddNewCategoryCMS extends BaseTest{
         driver.findElement(By.xpath(LocatorCMS.buttonSave)).click();
         //Search lại Category vừa Add New
         sleep(2);
-        driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys(Name);
+        driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys(NameCategory);
         driver.findElement(By.xpath(LocatorCMS.inputSearchType)).sendKeys(Keys.ENTER);
         sleep(2);
         //BT1
         String itemName = driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).getText();
-        if(itemName==Name){
+        if(itemName==NameCategory){
             System.out.println("Add Category  successfully");
         }else {
             System.out.println(("Add Category  unsuccessfully"));
@@ -100,7 +105,7 @@ public class BT3AddNewCategoryCMS extends BaseTest{
        //BT3
         Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).isDisplayed(),
                 "Không tìm thấy Category");
-        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).getText(),Name,
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorCMS.firstItemCategoryOnTable)).getText(),NameCategory,
                 "Không tìm thấy Category");
     }
     @Test(priority = 2)
