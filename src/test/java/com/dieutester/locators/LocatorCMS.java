@@ -86,6 +86,7 @@ public class LocatorCMS {
     public static String buttonActiveColor = "//div[@class='card-body']/div/div[3]/label/span";
     public static String listColors= "//div[@id='bs-select-4']/ul/li";
     public static String dropdownAttributes = "//button[@data-id='choice_attributes']";
+    public static String inputSearchAttributes = "//div[@class='dropdown-menu show']//input[@aria-label='Search']";
 
     //Product price + stock
     public static String headerProductPriceStock = "//h5[normalize-space()='Product price + stock']";

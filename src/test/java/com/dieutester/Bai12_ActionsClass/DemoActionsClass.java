@@ -131,34 +131,34 @@ public class DemoActionsClass extends BaseTest {
         inputCourseElement.sendKeys("Selenium");
         Thread.sleep(1000);
         //Ctrl + a để bôi đen
-        action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).build().perform();
+        action.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).pause(2000).sendKeys(Keys.DELETE).build().perform();
         Thread.sleep(1000);
-        //Ctrl + c để copy
-        action.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).build().perform();
-        Thread.sleep(1000);
-        //click vào ô Blog search
-        inputBlogElement.click();
-        Thread.sleep(1000);
-        //Ctrl + v để dán
-        action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).build().perform();
-
-        Thread.sleep(2000);
+//        //Ctrl + c để copy
+//        action.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).build().perform();
+//        Thread.sleep(1000);
+//        //click vào ô Blog search
+//        inputBlogElement.click();
+//        Thread.sleep(1000);
+//        //Ctrl + v để dán
+//        action.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).build().perform();
+//
+//        Thread.sleep(2000);
     }
 
-    @Test
-    public void openPrintPage() throws InterruptedException {
-        driver.get("https://anhtester.com/");
-        Thread.sleep(2000);
-        WebElement element = driver.findElement(By.xpath("//div[@class='col-lg-7']//h2[@class='section__title'][contains(text(),'Anh Tester')]"));
-        element.click();
-
-        Actions action = new Actions(driver);
-
-        Thread.sleep(2000);
-        action.keyDown(Keys.CONTROL).sendKeys("p")
-                .build().perform();
-        Thread.sleep(2000);
-    }
+//    @Test
+//    public void openPrintPage() throws InterruptedException {
+//        driver.get("https://anhtester.com/");
+//        Thread.sleep(2000);
+//        WebElement element = driver.findElement(By.xpath("//div[@class='col-lg-7']//h2[@class='section__title'][contains(text(),'Anh Tester')]"));
+//        element.click();
+//
+//        Actions action = new Actions(driver);
+//
+//        Thread.sleep(2000);
+//        action.keyDown(Keys.CONTROL).sendKeys("p")
+//                .build().perform();
+//        Thread.sleep(2000);
+//    }
 }
 
 
