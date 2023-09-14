@@ -25,10 +25,10 @@ public class BT4AddProductCMS extends BaseTest {
         Actions action = new Actions(driver);
         action.click(driver.findElement(By.xpath(LocatorCMS.menuProducts))).perform();
         action.click(driver.findElement(By.xpath(LocatorCMS.menuAddNewProduct))).perform();
-        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerAddNewProductPage)).isDisplayed(), "Header không tồn tại, không phải trang Login");
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerAddNewProductPage)).isDisplayed(), "Header không tồn tại, không phải trang AddNewProductPage");
         action.pause(2000);
         //Input Product Information
-        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerProductInformationPage)).isDisplayed(), "Header không tồn tại, không phải trang Login");
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerProductInformationPage)).isDisplayed(), "Header không tồn tại, không phải trang Product Information");
         action.sendKeys(driver.findElement(By.xpath(LocatorCMS.inputProductName)), "ProductNameD").perform();
         action.click(driver.findElement(By.xpath(LocatorCMS.dropdownCategory)))
                 .pause(2000)
@@ -56,7 +56,7 @@ public class BT4AddProductCMS extends BaseTest {
         sleep(1);
 
         //Product Variation
-        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerProductVariation)).isDisplayed(), "Header không tồn tại, không phải trang Login");
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerProductVariation)).isDisplayed(), "Header không tồn tại, không phải trang Product Variation");
         action.click(driver.findElement(By.xpath(LocatorCMS.buttonActiveColor))).perform();
         sleep(1);
         action.click(driver.findElement(By.xpath(LocatorCMS.dropdownColors))).perform();
@@ -97,7 +97,7 @@ public class BT4AddProductCMS extends BaseTest {
         robot.keyPress(KeyEvent.VK_ENTER);
 
         //Input Product price + stock
-        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerProductPriceStock)).isDisplayed(), "Header không tồn tại, không phải trang Login");
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorCMS.headerProductPriceStock)).isDisplayed(), "Header không tồn tại, không phải trang Product price + stock");
         WebElement unitPrice = driver.findElement(By.xpath(LocatorCMS.inputUnitPrice));
         unitPrice.clear();
         action.sendKeys(unitPrice, "11").perform();
