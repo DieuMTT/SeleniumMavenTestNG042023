@@ -1,14 +1,20 @@
 package com.dieutester.common;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.util.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,8 +29,8 @@ public class BaseTest {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
     }
 
     @BeforeMethod
@@ -43,8 +49,8 @@ public class BaseTest {
         }
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20)); //Dành cho Junior
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
     }
 
     @AfterMethod
@@ -58,11 +64,73 @@ public class BaseTest {
     }
 
     public void clickElement(String locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator))));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
         driver.findElement(By.xpath(locator)).click();
     }
 
     public void setText(String locator, String text){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
         driver.findElement(By.xpath(locator)).sendKeys(text);
+    }
+    public void keysEnter(String locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+        driver.findElement(By.xpath(locator)).sendKeys(Keys.ENTER);
+    }
+
+    public String getTextElement(String locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+        return driver.findElement(By.xpath(locator)).getText();
+    }
+    public String getAttributeElement(String locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+        return driver.findElement(By.xpath(locator)).getAttribute("value");
+    }
+
+    public Boolean checkElementExist(String xpath) {
+        List<WebElement> listElement = driver.findElements(By.xpath(xpath));
+
+        if (listElement.size() > 0) {
+            System.out.println("Element " + xpath + " existing.");
+            return true;
+        } else {
+            System.out.println("Element " + xpath + " NOT exist.");
+            return false;
+        }
+    }
+
+    //Chờ đợi trang load xong mới thao tác
+    public void waitForPageLoaded() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30), Duration.ofMillis(500));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        //Wait for Javascript to load
+        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                return js.executeScript("return document.readyState").toString().equals("complete");
+            }
+        };
+
+        //Check JS is Ready
+        boolean jsReady = js.executeScript("return document.readyState").toString().equals("complete");
+
+        //Wait Javascript until it is Ready!
+        if (!jsReady) {
+            System.out.println("Javascript is NOT Ready.");
+            //Wait for Javascript to load
+            try {
+                wait.until(jsLoad);
+            } catch (Throwable error) {
+                error.printStackTrace();
+                Assert.fail("FAILED. Timeout waiting for page load.");
+            }
+        }
     }
 
     public void sleep(double second){
@@ -96,5 +164,4 @@ public class BaseTest {
             throw new RuntimeException(e);
         }
     }
-
 }

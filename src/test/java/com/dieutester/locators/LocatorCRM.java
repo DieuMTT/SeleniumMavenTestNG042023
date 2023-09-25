@@ -7,6 +7,7 @@ public class LocatorCRM {
     public static String inputPassword = "//input[@id='password']";
     public static String buttonLogin = "//button[normalize-space()='Login']";
     public static String linkForgotPassword = "//a[normalize-space()='Forgot Password?']";
+    public static String alertMessage = "//div[@id='alerts']";
 
     //Dashboard
     public static String menuCustomers = "//span[normalize-space()='Customers']";
@@ -21,6 +22,9 @@ public class LocatorCRM {
     public static String headerCustomersPage = "//span[normalize-space()='Customers Summary']";
     public static String inputSearchCustomers = "//div[@id='DataTables_Table_0_filter']//input[@type='search']";
     public static String firstItemCustomerOnTable = "//td[@class='sorting_1']/a";
+
+    //Profile
+    public static String headerCustomerDetailsPage = "//a[normalize-space()='Customer Details']";
 
     //Add New Customer
     public static String inputCompanyName = "//input[@id='company']";
@@ -68,10 +72,12 @@ public class LocatorCRM {
     public static String inputSearchProjects = "//div[@id='DataTables_Table_0_filter']//input[@type='search']";
 
     //Add New Project
+
     public static String headerAddNewProject = "//form[@id='project_form']/descendant::h4[normalize-space()='Add new project']";
     public static String inputProjectName = "//label[normalize-space()='* Project Name']/following-sibling::input";
     public static String dropdownCustomer = "//label[@for='clientid']/following-sibling::div//button";
     public static String inputSearchCustomer = "//label[@for='clientid']/following-sibling::div//input[@type='search']";
+    public static String customerAdded = "//div[@id='bs-select-6']/ul//li/a/span[normalize-space()='CompanyNameBT16']";
     public static String checkboxCalculateProgress = "//input[@id='progress_from_tasks']";
     public static String sliderProgress = "//label[contains(text(),'Progress')]/following-sibling::input";
     public static String dropdownBillingType = "//label[@for='billing_type']/following-sibling::div[contains(@class, 'dropdown')]";
@@ -90,5 +96,6 @@ public class LocatorCRM {
     //public static String checkboxSendProject = "//label[normalize-space()='Send project created email']/preceding-sibling::input";
     public static String checkboxSendProject = "//input[@id='donotsendwelcomeemail']";
     public static String buttonSaveProject = "//div[@class='panel-footer text-right']/child::button";
+
 
 }
