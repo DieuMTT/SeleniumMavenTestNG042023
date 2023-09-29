@@ -99,6 +99,7 @@ public class AddNewCustomerCRMTest extends BaseTest {
         clickElement(LocatorCRM.menuProjects);
         clickElement(LocatorCRM.buttonAddNewProject);
         clickElement(LocatorCRM.dropdownCustomer);
+        waitForElementVisible(LocatorCRM.inputSearchCustomer);
         sleep(2);
         waitForPageLoaded();
         setText(LocatorCRM.inputSearchCustomer, InfoCRM.CompanyName);

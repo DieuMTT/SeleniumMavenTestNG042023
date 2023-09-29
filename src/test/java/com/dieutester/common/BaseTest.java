@@ -132,6 +132,10 @@ public class BaseTest {
             }
         }
     }
+    public void waitForElementVisible(String locator){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5),Duration.ofMillis(500));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
 
     public void sleep(double second){
         try {
