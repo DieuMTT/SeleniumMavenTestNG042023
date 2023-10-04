@@ -25,6 +25,7 @@ public class AddNewCustomerAndAddNewContractCRM extends BaseTest {
         clickElement(LocatorCRM.buttonLogin);
         sleep(1);
         Assert.assertTrue(driver.findElement(By.xpath(LocatorCRM.menuDashboard)).isDisplayed(), "Không đến được trang Dashboard.");
+
     }
 
     @Test(priority = 1)

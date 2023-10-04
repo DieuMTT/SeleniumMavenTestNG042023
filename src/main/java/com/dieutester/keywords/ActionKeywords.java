@@ -5,6 +5,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -18,6 +20,10 @@ public class ActionKeywords {
         this.driver = driver;
     }
 
+    public static void logConsole(String message){
+        System.out.println(message);
+    }
+
     public static void clickElement(String locator){
         driver.findElement(By.xpath(locator)).click();
     }
@@ -25,6 +31,21 @@ public class ActionKeywords {
     public static void setText(String locator, String text){
         driver.findElement(By.xpath(locator)).sendKeys(text);
     }
+    public static void setTextBy(By by, String text){
+        waitForElementVisible(by );
+        driver.findElement(by).sendKeys(text);
+        logConsole("Set Text" + text + "on element" + by);
+    }
+  public static void clickElementBy(By by){
+        waitForElementVisible(by);
+        driver.findElement(by).click();
+        logConsole("Click on Element"+ by);
+  }
+  public static void selectDropdownDynamic(By by, String text){
+        waitForElementVisible(by);
+      Select select = new Select(driver.findElement(by));
+      select.selectByVisibleText(text);
+  }
     public static boolean checkElementExist(By by) {
         List<WebElement> listElement = driver.findElements(by);
 
@@ -35,6 +56,10 @@ public class ActionKeywords {
             System.out.println("Element " + by + " NOT exist.");
             return false;
         }
+    }
+    public static  void waitForElementVisible(By by){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30),Duration.ofMillis(500));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
     public static void waitForPageLoaded() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30), Duration.ofMillis(500));
